@@ -1,12 +1,21 @@
 import {create} from 'zustand';
 
-interface BearState {
-  bears: number;
-  increase: (by: number) => void;
+interface AccessTokenState {
+  accessToken: string;
+  setAccessToken: (token: string) => void;
 }
-const useBearStore = create<BearState>()(set => ({
-  bears: 0,
-  increase: by => set(state => ({bears: state.bears + by})),
+interface RefreshTokenState {
+  refreshToken: string;
+  setRefreshToken: (token: string) => void;
+}
+export const useAccessTokenStore = create<AccessTokenState>()(set => ({
+  accessToken: '',
+  setAccessToken: token => set(state => ({accessToken: token})),
 }));
 
-export default useBearStore;
+export const useRefreshTokenStore = create<RefreshTokenState>()(set => ({
+  refreshToken: '',
+  setRefreshToken: token => set(state => ({refreshToken: token})),
+}));
+
+export default useAccessTokenStore;

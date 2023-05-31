@@ -2,16 +2,22 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Text, View} from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Home from '../components/Home';
 import MyPage from '../components/MyPage';
 import Bookmarked from '../components/Bookmarked';
 
-const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+type StackParamList = {
+  BottomTabHome: undefined;
+  BookMark: undefined;
+};
+type TabParamList = {
+  Home: undefined;
+  MY: undefined;
+};
+
+const Tab = createBottomTabNavigator<TabParamList>();
+const Stack = createNativeStackNavigator<StackParamList>();
 
 const BottomTabNavigator = () => {
   return (
@@ -26,7 +32,11 @@ function Navigation() {
   return (
     <SafeAreaProvider>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={BottomTabNavigator} />
+        <Stack.Screen
+          name="BottomTabHome"
+          component={BottomTabNavigator}
+          options={{headerShown: false}}
+        />
         <Stack.Screen name="BookMark" component={Bookmarked} />
       </Stack.Navigator>
     </SafeAreaProvider>
