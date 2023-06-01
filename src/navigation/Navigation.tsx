@@ -6,10 +6,12 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Home from '../components/Home';
 import MyPage from '../components/MyPage';
 import Bookmarked from '../components/Bookmarked';
+import DetailScreen from '../components/DetailScreen';
 
 type StackParamList = {
   BottomTabHome: undefined;
   BookMark: undefined;
+  Detail: undefined;
 };
 type TabParamList = {
   Home: undefined;
@@ -38,6 +40,7 @@ function Navigation() {
           options={{headerShown: false}}
         />
         <Stack.Screen name="BookMark" component={Bookmarked} />
+        <Stack.Screen name="Detail" component={DetailScreen} />
       </Stack.Navigator>
     </SafeAreaProvider>
   );
